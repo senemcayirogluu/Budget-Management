@@ -1,0 +1,65 @@
+.update_data {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 20px;
+    padding: 10px;
+    border: 2px solid #1976d2;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+    width: 100%;
+    max-width: 400px;
+}
+.dataInfo > h5 {
+    margin: 10px;
+}
+.dataInfo > input {
+    width: 100%;
+    margin: 5px 0;
+    padding: 5px;
+    border: 1px solid #1976d2;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+}
+.dataInfo > input:focus {
+    outline-color:  #094a8b;
+}
+.earnOrSpend > label {
+    margin: 10px;
+}
+.earnOrSpend > input {
+    margin: 10px;
+}
+.button_update{
+    margin: 10px 0;
+    padding: 10px;
+    border: 1px solid #1976d2;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+    cursor: pointer;
+    color: #1976d2;
+}
+.button_update:hover {
+    background-color: #1976d2;
+    border: 1px solid aliceblue;
+    color: lightgray;
+}
+.button_cancel {
+    margin: 10px 0;
+    padding: 10px;
+    border: 1px solid  #eb4f4f;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    background-color:#fff;
+    cursor: pointer;
+    color:  #eb4f4f;
+}
+.button_cancel:hover {
+    background-color: #eb4f4f;
+    border: 1px solid #fff;
+    color: #fff;
+}

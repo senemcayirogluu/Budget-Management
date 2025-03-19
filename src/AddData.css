@@ -1,0 +1,79 @@
+.addData {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 400px;
+  margin: 20px;
+  padding: 10px;
+  border: 2px solid #1976d2;
+  border-radius: 5px;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+.data_info h5 {
+  margin: 5px;
+}
+.data_info > input, .dataDate {
+  width: 100%;
+  margin: 5px 0;
+  padding: 5px;
+  border: 1px solid #1976d2;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+}
+.data_info > input:focus, .dataDate:focus {
+  outline-color: #094a8b;
+}
+.earn_spend > label {
+  margin: 10px;
+}
+.button_add {
+  margin: 10px 0;
+  padding: 10px;
+  border: 1px solid #1976d2;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+  cursor: pointer;
+  color: #1976d2;
+}
+.button_add:hover {
+  background-color: #1976d2;
+  border: 1px solid aliceblue;
+  color: lightgray;
+}
+.button_cancel {
+  margin: 10px 0;
+  padding: 10px;
+  border: 1px solid #eb4f4f;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+  cursor: pointer;
+  color: #eb4f4f;
+}
+.button_cancel:hover {
+  background-color: #eb4f4f;
+  border: 1px solid #fff;
+  color: #fff;
+}
+.error_message {
+  color: red;
+}
+
+@media screen and (max-width: 768px) {
+  .addData {
+    padding: 1rem;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .addData {
+    padding: 15px;
+    width: -webkit-fill-available;
+  }
+}

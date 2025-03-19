@@ -1,0 +1,112 @@
+.home {
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+}
+.home h2 {
+  text-align: center;
+  margin-top: 20px;
+}
+.budgetSummary{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.budgetManagment {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+.addIcon {
+  color: #fff;
+  background-color: #1976d2;
+  border-radius: 80px;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  padding: 15px 30px;
+  cursor: pointer;
+}
+
+.addDataToHome {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+.homeDate {
+  margin-top: 20px;
+  background-color: #fff;
+  position: absolute;
+  right: 50px;
+  top: 100px;
+}
+.homeDate input {
+  border: none;
+  padding: 10px;
+  border: 1px solid #1976d2;
+  border-radius: 8px;
+}
+.homeDate input:focus {
+  outline-color: #094a8b;
+}
+
+@media screen and (max-width: 768px) {
+  .homeDate {
+    position: relative;
+    right: auto;
+    top: auto;
+    margin: 10px auto;
+    display: flex;
+    justify-content: center;
+  }
+
+  .addIcon {
+    padding: 10px 20px;
+    bottom: 15px;
+    right: 15px;
+  }
+
+  .addDataToHome {
+    padding: 1rem;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .home {
+    padding: 10px;
+  }
+
+  .home h2 {
+    font-size: 1.2rem;
+  }
+
+  .homeDate {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+
+  .homeDate input {
+    width: 90%;
+    padding: 8px;
+  }
+
+  .addIcon {
+    padding: 8px 16px;
+    bottom: 10px;
+    right: 10px;
+  }
+
+  .addDataToHome {
+    padding: 15px;
+    width: 100%;
+  }
+}

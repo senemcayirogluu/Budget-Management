@@ -1,0 +1,11 @@
+.css-1xrrpwr-MuiTypography-root > a {
+    text-decoration: none;
+    color: blue;
+}
+.css-1xrrpwr-MuiTypography-root > a:hover {
+    color: -webkit-link;
+}
+
+.css-xrpg5o { 
+    margin-right: 2%;
+}
