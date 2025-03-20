@@ -11,7 +11,13 @@ import axios from "axios";
 
 registerLocale("tr", tr);
 
-const AddData = ({ onClose, onDataAdded }: { onClose: () => void; onDataAdded: () => void }) => {
+const AddData = ({
+  onClose,
+  onDataAdded,
+}: {
+  onClose: () => void;
+  onDataAdded: () => void;
+}) => {
   const { t, i18n } = useTranslation();
   const navigate = useNavigate();
   const [{ data }, dispatch] = useStateValue();
@@ -30,6 +36,8 @@ const AddData = ({ onClose, onDataAdded }: { onClose: () => void; onDataAdded: (
   const locale = i18n.language === "tr" ? "tr" : "en";
   const dateFormat = i18n.language === "tr" ? "dd/MM/yyyy" : "MM/dd/yyyy";
 
+  const userId = localStorage.getItem("userId");
+
   const addData = async () => {
     if (!budget || !description || !situationOption || !date) {
       setError(t("fill the form"));
@@ -45,17 +53,25 @@ const AddData = ({ onClose, onDataAdded }: { onClose: () => void; onDataAdded: (
       description: description,
       earning: situationOption === "earning" ? earning : null,
       spending: situationOption === "spending" ? spending : null,
-      date: date.toISOString().split('T')[0],
+      date: date.toISOString().split("T")[0],
+      userId: userId,
     };
 
     dispatch({
       type: "ADD_DATA",
       item: newData,
-    });  
+    });
 
     try {
-      await axios.post("http://localhost:8080/transactions/add", newData); 
-      onDataAdded(); 
+      const accessToken = localStorage.getItem("accessToken");
+
+      if (!accessToken) {
+        throw new Error("No access token available");
+      }
+      await axios.post("http://localhost:8080/transactions/add", newData, {
+        headers: { Authorization: `Bearer ${accessToken}` },
+      });
+      onDataAdded();
 
       setBudget("");
       setDescription("");
@@ -66,7 +82,7 @@ const AddData = ({ onClose, onDataAdded }: { onClose: () => void; onDataAdded: (
       setError("");
 
       setTimeout(() => {
-        navigate("/"); 
+        navigate("/");
       }, 500);
 
       onClose();
@@ -87,7 +103,7 @@ const AddData = ({ onClose, onDataAdded }: { onClose: () => void; onDataAdded: (
       setEarning("");
     }
   };
-  
+
   return (
     <div className="addData">
       <div className="data_info">

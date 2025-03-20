@@ -8,8 +8,8 @@ const Register: React.FC = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const [username, setUsername] = useState<string>("");
-  const [firstname, setFirstname] = useState<string>("");
-  const [lastname, setLastname] = useState<string>("");
+  const [firstName, setFirstname] = useState<string>("");
+  const [lastName, setLastname] = useState<string>("");
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
@@ -19,12 +19,16 @@ const Register: React.FC = () => {
     setErrorMessage(null);
 
     try {
-      const response = await axios.post(`http://localhost:8080/users/register`, {
+      const response = await axios.post("http://localhost:8080/users/register", {
         username,
-        firstname,
-        lastname,
+        firstName,
+        lastName,
         email,
         password,
+      }, {
+        headers: {
+          'Content-Type': 'application/json',
+        }
       });
 
       console.log("Kayıt başarılı: ", response.data);
@@ -52,10 +56,10 @@ const Register: React.FC = () => {
         <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} required />
 
         <h5>{t("firstname")}:</h5>
-        <input type="text" value={firstname} onChange={(e) => setFirstname(e.target.value)} required />
+        <input type="text" value={firstName} onChange={(e) => setFirstname(e.target.value)} required />
 
         <h5>{t("lastname")}:</h5>
-        <input type="text" value={lastname} onChange={(e) => setLastname(e.target.value)} required />
+        <input type="text" value={lastName} onChange={(e) => setLastname(e.target.value)} required />
         
         <h5>{t("email")}:</h5>
         <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} required />

@@ -20,11 +20,11 @@ function App() {
 
   const fetchData = async () => {
     try {
-      const response = await axios.get("https://localhost:8080");
+      // const response = await axios.get("https://localhost:8080");
       const token = localStorage.getItem("token");
       if (token) {
         const response = await axios.get(
-          "https://localhost:8080/users/authenticate",
+          "http://localhost:8080/users/authenticate",
           {
             headers: {
               Authorization: `Bearer ${token}`,
@@ -43,7 +43,7 @@ function App() {
         });
         setAuthenticate(false);
       }
-      setData(response.data);
+      // setData(response.data);
     } catch (error) {
       console.error("Error fetching data:", error);
     }

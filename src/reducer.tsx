@@ -131,8 +131,13 @@ const reducer = (
         ...state,
         user: action.item,
       };
+    // case "SET_DATA":
+    //   return {
+    //     ...state,
+    //     data: action.data.filter((item: any) => item.userId === state.user.id),
+    //   };
     case "ADD_DATA":
-      console.log("Eklen veri:", action.item);
+      console.log("Eklenen veri:", action.item);
       return {
         ...state,
         data: [...state.data, action.item],

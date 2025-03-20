@@ -4,7 +4,9 @@ import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import axios from "axios";
 
-const Login: React.FC <{ setAuthenticate: (authenticate: boolean) => void }> = (props) => {
+const Login: React.FC<{ setAuthenticate: (authenticate: boolean) => void }> = (
+  props
+) => {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const [username, setUsername] = useState<string>("");
@@ -15,21 +17,40 @@ const Login: React.FC <{ setAuthenticate: (authenticate: boolean) => void }> = (
     event.preventDefault();
     setError("");
     try {
-      const response = await axios.post("http://localhost:8080/users/authenticate", {
-        username,
-        password,
-      });
+      const response = await axios.post("http://localhost:8080/users/authenticate",{
+          username,
+          password,
+        }
+      );
 
-      const {token, accessToken, refreshToken} = response.data.token;
-      localStorage.setItem("token", token);
-      localStorage.setItem("accessToken", accessToken);
-      localStorage.setItem("refreshToken", refreshToken);
+      console.log("Server response:", response.data);
 
-      console.log("Giriş başarılı:", response.data);
-      props.setAuthenticate(true);
-      navigate("/");
+      const { accessToken, refreshToken } = response.data;
+      if (accessToken && refreshToken) {
+        localStorage.setItem("accessToken", accessToken);
+        localStorage.setItem("refreshToken", refreshToken);
+
+        try {
+          const payload = JSON.parse(atob(accessToken.split(".")[1])); 
+          console.log("Decoded Token:", payload);
+  
+          if (payload?.userId) {
+            localStorage.setItem("userId", payload.userId);
+          } else {
+            throw new Error("userId not found in token");
+          }
+        } catch (error) {
+          console.error("Token decoding error:", error);
+        }
+
+        console.log("Giriş başarılı:", response.data);
+        props.setAuthenticate(true);
+        navigate("/");
+      } else {
+        throw new Error("Invalid token structure");
+      }
     } catch (err: any) {
-      console.error("Giriş başarıısız:", err);
+      console.error("Giriş başarısız:", err);
       setError(t("Invalid username or password"));
     }
   };

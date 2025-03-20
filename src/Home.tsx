@@ -10,11 +10,13 @@ import { tr } from "date-fns/locale/tr";
 import { getEarningTotal, getSpendingTotal } from "./reducer";
 import { useTranslation } from "react-i18next";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 registerLocale("tr", tr);
 
 const Home = () => {
   const { t, i18n } = useTranslation();
+  const navigate = useNavigate();
   const [{ data }, dispatch] = useStateValue();
   const [showPopUp, setShowPopUp] = useState<boolean>(false);
   const [dateRange, setDateRange] = useState<[Date | null, Date | null]>([
@@ -25,38 +27,82 @@ const Home = () => {
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
 
-  const locale = i18n.language === "tr" ? "tr" : "en"; 
+  const locale = i18n.language === "tr" ? "tr" : "en";
   const dateFormat = i18n.language === "tr" ? "dd/MM/yyyy" : "MM/dd/yyyy";
 
   useEffect(() => {
     const fetchData = async () => {
       setLoading(true);
       setError(null);
+
       try {
-        const response = await axios.get("http://localhost:8080/transactions");
+        const userId = localStorage.getItem("userId");
+        const accessToken = localStorage.getItem("accessToken");
+
+        if (!userId || !accessToken) {
+          throw new Error("User not authenticated");
+        }
+
+        const response = await axios.get(`http://localhost:8080/transactions/user/${userId}`, {
+            headers: { Authorization: `Bearer ${accessToken}` },
+          });
         dispatch({
           type: "SET_DATA",
           payload: response.data,
         });
-      } catch (err) {
+      } catch (err: any) {
+        console.error(err);
+        if (err.response?.status === 401) {
+          await refreshAccessToken(); 
+          fetchData(); 
+        } else {
         setError(t("error fetching data"));
+        }
       } finally {
         setLoading(false);
       }
     };
 
     fetchData();
-  }, [dispatch]);
+  }, [dispatch, t]);
 
+  
+
+  const refreshAccessToken = async () => {
+    try {
+      const refreshToken = localStorage.getItem("refreshToken");
+  
+      if (!refreshToken) throw new Error("No refresh token available");
+  
+      const response = await axios.post("http://localhost:8080/users/refreshToken", {
+        refreshToken,
+      });
+  
+      const { accessToken, newRefreshToken } = response.data;
+      if (accessToken && newRefreshToken) {
+        localStorage.setItem("accessToken", accessToken);
+        localStorage.setItem("refreshToken", newRefreshToken);
+        console.log("Token yenilendi");
+      } else {
+        throw new Error("Invalid refresh token response");
+      }
+    } catch (err) {
+      console.error("Refresh token error:", err);
+      localStorage.clear();
+      navigate("/login");
+    }
+  };  
 
   const handleAddData = () => {
     setShowPopUp(!showPopUp);
   };
-  
+
   const filteredData = data.filter((item: any) => {
-    if (!item || typeof item.date !== 'string') return false;
+    if (!item || typeof item.date !== "string") return false;
     const itemDate = new Date(item.date.split(".").reverse().join("-"));
-    return (!startDate || itemDate >= startDate) && (!endDate || itemDate <= endDate);
+    return (
+      (!startDate || itemDate >= startDate) && (!endDate || itemDate <= endDate)
+    );
   });
   console.log("Filtered Data:", filteredData);
 
@@ -74,9 +120,18 @@ const Home = () => {
       {error && <p style={{ color: "red" }}>{error}</p>}
 
       <div className="budgetSummary">
-        <p><strong>{t("total earnings")}: </strong>{totalEarnings}₺</p>
-        <p><strong>{t("total spending")}: </strong>{totalSpending}₺</p>
-        <p><strong>{t("net balance")}: </strong>{netTotal}₺</p>
+        <p>
+          <strong>{t("total earnings")}: </strong>
+          {totalEarnings}₺
+        </p>
+        <p>
+          <strong>{t("total spending")}: </strong>
+          {totalSpending}₺
+        </p>
+        <p>
+          <strong>{t("net balance")}: </strong>
+          {netTotal}₺
+        </p>
       </div>
 
       <div className="homeDate">
@@ -116,7 +171,10 @@ const Home = () => {
 
       {showPopUp && (
         <div className="addDataToHome">
-          <AddData onClose={() => setShowPopUp(false)} onDataAdded={() => setShowPopUp(false)}/>
+          <AddData
+            onClose={() => setShowPopUp(false)}
+            onDataAdded={() => setShowPopUp(false)}
+          />
         </div>
       )}
     </div>
