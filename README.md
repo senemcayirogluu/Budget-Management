@@ -1,6 +1,5 @@
 # Budget Management Project | Bütçe Yönetim Projesi
 
----
 
 ## English Version
 
@@ -29,7 +28,6 @@ Additionally, user registration and login features are included.
 - react-date-picker  
 - axios
 
----
 
 ## Türkçe Versiyon
 
