@@ -1,46 +1,60 @@
-# Getting Started with Create React App
+# Budget Management Project | Bütçe Yönetim Projesi
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+---
 
-## Available Scripts
+## English Version
 
-In the project directory, you can run:
+### Project Overview  
+The project allows users to manage their personal finances easily.  
+Users can enter their budget amount, specify whether it’s an income or expense, select a date, and add a description.  
+They can update, delete, or add new budget entries.  
+Between selected dates, users can view total income, total expenses, and net balance.  
+The project also includes multi-language support — available in both English and Turkish.  
+Additionally, user registration and login features are included.  
 
-### `npm start`
+### Features  
+- Add, update, and delete budget records  
+- Filter by date range  
+- View total income, total expenses, and net value  
+- Multi-language support (English / Turkish)  
+- User authentication (Sign up & Login)  
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+### Technologies Used  
+- HTML  
+- CSS  
+- TypeScript  
+- React  
+- Material UI  
+- i18next  
+- react-date-picker  
+- axios
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+---
 
-### `npm test`
+## Türkçe Versiyon
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Proje Özeti  
+Bütçe Yönetim Projesi, kullanıcıların kişisel finanslarını kolayca yönetmesini sağlar.  
+Kullanıcılar, miktar, kazanç veya harcama türü, tarih ve açıklama bilgilerini girerek bütçelerini yönetebilir.  
+Mevcut verileri güncelleyebilir, silebilir veya yeni bütçe verisi ekleyebilirler.  
+Seçilen tarihler arasındaki toplam kazanç, toplam harcama ve net değer görüntülenebilir.  
+Proje, çoklu dil desteği içerir — İngilizce ve Türkçe olarak kullanılabilir.  
+Ayrıca, kullanıcı kaydı ve giriş işlemleri de yapılabilir.  
 
-### `npm run build`
+### Özellikler  
+- Bütçe verisi ekleme, güncelleme ve silme  
+- Tarih aralığına göre filtreleme  
+- Toplam kazanç, harcama ve net değeri görüntüleme  
+- Çoklu dil desteği (İngilizce / Türkçe)  
+- Kullanıcı kimlik doğrulama (Kayıt ol & Giriş yap)
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Kullanılan Teknolojiler  
+- HTML  
+- CSS  
+- TypeScript  
+- React  
+- Material UI  
+- i18next  
+- react-date-picker  
+- axios
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
