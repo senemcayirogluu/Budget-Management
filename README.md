@@ -56,3 +56,30 @@ Ayrıca, kullanıcı kaydı ve giriş işlemleri de yapılabilir.
 - react-date-picker  
 - axios
 
+
+## Screenshots / Ekran Görüntüleri
+
+### Login Page / Giriş Sayfası
+![Login Page](./screenshots/login.png)
+
+### Register Page / Kaydol Sayfası
+![Register Page](./screenshots/register.png)
+
+### Account Page / Hesap Bilgileri Sayfası
+![Account Page](./screenshots/account.png)
+
+### Home Page / Ana sayfa
+![Home Page](./screenshots/dashboard.png)
+
+### Home Page with Translation / Ana Sayfa (Çeviri ile)
+![Home Page with translation](./screenshots/dashboard-translate.png)
+
+### Add Budget / Bütçe Ekle
+![Add Budget](./screenshots/add-budget.png)
+
+### Update Budget / Bütçe Güncelle
+![Update Budget](./screenshots/update-budget.png)
+
+### Data by Selected Date Filter / Seçilen Tarihe Göre Veriler
+![Date Filter](./screenshots/data-within-the-selected-date-range.png)
+
